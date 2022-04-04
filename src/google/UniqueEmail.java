@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
+// Link: https://leetcode.com/explore/featured/card/google/67/sql-2/3044/
 public class UniqueEmail {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);

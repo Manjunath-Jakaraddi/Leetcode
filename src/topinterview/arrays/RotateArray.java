@@ -1,7 +1,8 @@
-package topinterview;
+package topinterview.arrays;
 
 import java.util.Arrays;
 
+// Link:= https://leetcode.com/explore/featured/card/top-interview-questions-easy/92/array/646/
 public class RotateArray {
     public static void main(String[] args) {
         int[] nums = new int[] {1,2,3,4,5,6,7};

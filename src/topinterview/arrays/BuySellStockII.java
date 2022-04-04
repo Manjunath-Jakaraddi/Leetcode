@@ -1,5 +1,7 @@
-package topinterview;
+package topinterview.arrays;
 
+
+// Link:= https://leetcode.com/explore/featured/card/top-interview-questions-easy/92/array/564/
 public class BuySellStockII {
     public static void main(String[] args) {
 
