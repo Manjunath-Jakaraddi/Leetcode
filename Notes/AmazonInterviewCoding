@@ -1,0 +1,103 @@
+function foo(items) {
+  var i;
+  for (i = 0; i < items.length; i++) {
+    alert("Welcome To LiveCode " + items[i]);
+  }
+}
+
+Given a sequence of n strings, the task is to check if any two similar words come together
+then they destroy each other then print the number of words left in the sequence after this pairwise destruction.
+*Examples:*
+
+Input : ab aa aa bcd ab
+Output : 3
+As aa, aa destroys each other so, ab bcd ab is the new sequence.
+
+Input : ab ba aa aa cb aa aa cb ba ab
+Output : 0
+
+
+ab aa aa ab bcd
+l         r
+          l  r
+public class Main {
+    public static void main(String[] args) {
+        List<String> inp = new ArrayList<String>();
+        Scanner sc = new Scanner(System.in);
+        int N = sc.nextInt();
+        String[] res = new String[N];
+        int l = 0,
+    }
+}
+Stack<Integer> st;
+
+
+
+
+ab ba aa aa cb aa aa cb ba ab
+                        i
+res -> ab ba cb aa
+-1   0  1  2 3
+ind
+input -> str[]
+res -> [str[0]
+ind -> 0
+i -> 1:N-1
+    if str[i] == res[ind]
+        ind--
+    else
+        ind++
+        res[ind] = str[i]
+
+i -> 0: ind
+    print res[i]
+
+
+Given a string, find the longest substring which is palindrome.
+
+For example,
+Input: Given string :"forgeeksskeegfor",
+Output: "geeksskeeg"
+
+Input: Given string :"Geeks",
+Output: "ee"
+
+
+
+7,8
+2,13
+10
+
+public class Main {
+    public static void main(String[] args) {
+        char[] inp;
+        int N = inp.length;
+        int l = -1, r=-1, mx = 0;
+        for(int i=0; i<N-1; i++) {
+            if(inp[i] == inp[i+1]) {
+                int lind = i, rind=i+1;
+                while(lind>=0 && rind<N && inp[lind] == inp[rind]) {
+                    lind--;
+                    rind++;
+                }
+                int len = rind - lind - 1;
+                if (len > mx) {
+                    mx = len;
+                    l = lind+1;
+                    r = rind-1;
+                }
+            }
+        }
+        if(l != -1) {
+            for(int i=l; i<=l; i++) {
+                System.out.print(inp[l]);
+            }
+        }
+    }
+}
+
+
+
+
+
+

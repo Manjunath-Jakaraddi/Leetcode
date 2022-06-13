@@ -1,1 +1,84 @@
+Fibonacci in binary time
+ | 1  1 | to the power n   =  | F(N+1)  F(N)  | to the power n
+ | 1  0 |                     | F(N)    F(N-1 |
+
+Binets formula
+goldenRatio = (1 + sqrt(5)) / 2;
+fib(n) = (goldenRation ^ N) / sqrt(5)
+
 1) Handle the basic scenarios first with no array value 1 array value being the solution etc.
+
+How to identify dp:
+1) Common dp problems ask for maximize, minimize, counts etc.
+   Drawback: Such kind of problems usually will be solved by greedy.
+2) Decision taken now will affect future, or future is affected by decisions in the past
+    In such case assume it is not dp, think a counter example for greedy and then apply dp
+
+Framework for solving dp
+Include variables that are relevant to the problem like if there somethings changes in the excluded variable
+and that affects how we solve our problem then that variable should be part of the state.
+Again include relevant variables only
+
+Step 1) Datastructures that store the information of the relevant variables. Think of different variable constraints
+        (Usually top-down has Hashmap - as some states might be skipped)
+
+Step 2) Figure out all the transitions between the states, like consider one states (initial or final)
+        and then ask how can we reach this state or which states can we transition to from here
+
+Step 3) Well the problem has to stop somewhere or build up from somewhere where we already know the answers
+        Figure out the base cases. Think which states I can find answer without dp
+
+
+2-D DP
+The following are common things to look out for in DP problems that require a state variable:
+
+1. An index along some input. This is usually used if an input is given as an array or string.
+    This has been the sole state variable for all the problems that we've looked at so far,
+    and it has represented the answer to the problem if the
+    input was considered only up to that index - for example, if the input is
+    nums = [0, 1, 2, 3, 4, 5, 6]  then dp(4) would represent the answer to the problem for the input nums = [0, 1, 2, 3, 4].
+2. A second index along some input. Sometimes, you need two index state variables, say i and j.
+    In some questions, these variables represent the answer to the original problem if you considered the input starting at index i
+    and ending at index j.
+    Using the same example above, dp(1, 3) would solve the problem for the input nums = [1, 2, 3],
+     if the original input was [0, 1, 2, 3, 4, 5, 6].
+3. Explicit numerical constraints given in the problem. For example, "you are only allowed to complete k transactions",
+    or "you are allowed to break up to k obstacles", etc.
+4. Variables that describe statuses in a given state. For example "true if currently holding a key, false if not",
+    "currently holding k packages" etc.
+5. Some sort of data like a tuple or bitmask used to indicate things being "visited" or "used". For example, "bitmask is a mask
+    where the ith bit indicates if the ith city has been visited".
+    Note that mutable data structures like arrays cannot be used - typically, only immutable data structures like
+    numbers and strings can be hashed, and therefore memoized.
+
+
+Converting topdown to bottom up
+----------
+First writing top-down approach
+1. defined 2 states that were the variables in the recursion, and then the limites for loops will be the stopping conditions
+    like nums.length and k
+2. start the dp states exploration (dp start) on the opposite end of what's being asked in question (opp of stopping conditions)
+3. Setting base cases (which you can deduce the answer from looking at the question and intelligence)
+4. for looping starting iteration from base cases (loops can be interchanged if they are linearisable i.e depend on previously
+    computed states)
+5. Same state transition conditions used in the top-down approach
+
+VERY IMPORTANT: Start the for loops iteration in bottom up from where the base case ends in topdown
+
+
+Time and space complexity DP
+-------------
+
+If computing each state requires FF time, and there are nn possible states, then the time complexity of a DP algorithm is
+O(n⋅F). With all the problems we have looked at so far, computing a state has just been using a recurrence relation equation,
+which is O(1). Therefore, the time complexity has just been equal to the number of states.
+
+
+Java APIs
+-------------
+1) Map upper and lower bounds
+    a. ceilingEntry -> least key >= current given key
+    b. higherEntry -> least key > current given key
+    c. floorEntry -> greatest key <= current given key
+    d. lowerEntry -> greatest key < current given key
+    we can also fetch just the Key with ceilingKey, floorKey methods as well
