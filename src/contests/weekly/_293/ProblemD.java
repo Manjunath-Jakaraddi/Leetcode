@@ -1,5 +1,6 @@
 package contests.weekly._293;
 
+import java.util.Map;
 import java.util.Scanner;
 import java.util.TreeMap;
 
@@ -27,7 +28,7 @@ class CountIntervals {
     TreeMap<Integer, Integer> m = new TreeMap<>();
     int cnt = 0;
     public void add(int left, int right) {
-        var it = m.floorEntry(left);
+        Map.Entry<Integer, Integer> it = m.floorEntry(left);
         if (it == null || it.getValue() < left)
             it = m.higherEntry(left);
         for (; it != null && it.getKey() <= right; it = m.higherEntry(left)) {

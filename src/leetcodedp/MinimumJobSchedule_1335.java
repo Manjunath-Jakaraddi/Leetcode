@@ -28,16 +28,22 @@ public class MinimumJobSchedule_1335 {
     public int minDifficulty2(int[] jobDifficulty, int days) {
         int N = jobDifficulty.length;
         int[][] dp = new int[days+1][N+1];
-        int currMax = 0;
+        int currMax = 0, currAns = 0;
         for (int i = 0; i < N; i++) {
             currMax = Math.max(currMax, jobDifficulty[i]);
             dp[1][i+1] = currMax;
         }
-        for (int day = 2; day < days; day++) {
-            for (int i = 0; i < N - day + 1; i++) {
-                dp[day][i] = Math.max()
+        for (int day = 2; day <= days; day++) {
+            for (int i = day; i <= N; i++) {
+                currMax = 0;
+                currAns = INF;
+                for (int k = i; k < N - (days - i); k++) {
+                    currMax = Math.max(currMax, jobDifficulty[k - 1]);
+                    currAns = Math.min(currAns, currMax + dp[day - 1][i - 1]);
+                }
             }
         }
+        return dp[days][N+1];
     }
 
     int solve(int curr, int day) {
