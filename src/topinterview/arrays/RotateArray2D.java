@@ -4,8 +4,8 @@ package topinterview.arrays;
 public class RotateArray2D {
     public void rotate1(int[][] matrix) {
         int n = matrix.length;
-        for(int i=0; i< (n+1)/2; i++) {
-            for(int j=0; j< n/2; j++) {
+        for(int i=0; i < (n+1)/2; i++) {
+            for(int j=0; j < n/2; j++) {
                 int temp = matrix[i][j]; // i=0, j=1
                 matrix[i][j] = matrix[n-1-j][i]; // 1, 0
                 matrix[n-1-j][i] = matrix[n-1-i][n-1-j];
@@ -47,6 +47,11 @@ public class RotateArray2D {
 /**
  * Revise: Trick
  * 1) To rotate with every element four time
+ *  Tip1: Take (0,1) cell to trace
+ *          and remember i will be upto (n+1/2) and j will be n/2
+ *          as need to rotate all the elements(including middle one) in the row upto half columns
  * 2) Also, can be done via transpose (over the diagonal)
  *      and then reversing along the half line.
+ *
+ *
  */

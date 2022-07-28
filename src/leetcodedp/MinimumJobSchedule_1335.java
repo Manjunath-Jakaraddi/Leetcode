@@ -25,26 +25,6 @@ public class MinimumJobSchedule_1335 {
         return solve(0, days);
     }
 
-    public int minDifficulty2(int[] jobDifficulty, int days) {
-        int N = jobDifficulty.length;
-        int[][] dp = new int[days+1][N+1];
-        int currMax = 0, currAns = 0;
-        for (int i = 0; i < N; i++) {
-            currMax = Math.max(currMax, jobDifficulty[i]);
-            dp[1][i+1] = currMax;
-        }
-        for (int day = 2; day <= days; day++) {
-            for (int i = day; i <= N; i++) {
-                currMax = 0;
-                currAns = INF;
-                for (int k = i; k < N - (days - i); k++) {
-                    currMax = Math.max(currMax, jobDifficulty[k - 1]);
-                    currAns = Math.min(currAns, currMax + dp[day - 1][i - 1]);
-                }
-            }
-        }
-        return dp[days][N+1];
-    }
 
     int solve(int curr, int day) {
         if (day == 1) {
@@ -62,5 +42,54 @@ public class MinimumJobSchedule_1335 {
 
         mmap[curr][day] = currAns;
         return currAns;
+    }
+
+    public int minDifficultyMine(int[] jobDifficulty, int totalDays) {
+        int N = jobDifficulty.length;
+        int[][] dp = new int[N][totalDays+1];
+        int currMax = 0, currAns = 0;
+        if (totalDays > N) {
+            return -1;
+        }
+        for (int i = N-1; i >= 0; i--) {
+            currMax = Math.max(currMax, jobDifficulty[i]);
+            dp[i][1] = currMax;
+        }
+        for (int day = 2; day <= totalDays; day++) {
+            for (int i = totalDays - day; i < N - day + 1; i++) {
+                int hardest = 0;
+                dp[i][day] = Integer.MAX_VALUE;
+                for (int j = i; j < N - day + 1; j++) {
+                    hardest = Math.max(hardest, jobDifficulty[j]);
+                    dp[i][day] = Math.min(dp[i][day], hardest + dp[j+1][day-1]);
+                }
+            }
+        }
+
+        return dp[0][totalDays];
+    }
+
+    public int minDifficultyLeetcode(int[] jobDifficulty, int totalDays) {
+        int N = jobDifficulty.length;
+        int[][] dp = new int[N][totalDays+1];
+        int currMax = 0, currAns = 0;
+        if (totalDays > N) {
+            return -1;
+        }
+        for (int i = N-1; i >= 0; i--) {
+            currMax = Math.max(currMax, jobDifficulty[i]);
+            dp[i][totalDays] = currMax;
+        }
+        for (int day = totalDays - 1; day > 0; day++) {
+            for (int i = day - 1; i < N - (totalDays - day); i++) {
+                int hardest = 0;
+                for (int j = i; j < N - (totalDays - day); j++) {
+                    hardest = Math.max(hardest, jobDifficulty[j]);
+                    dp[i][day] = Math.min(dp[i][day], hardest + dp[j+1][day+1]);
+                }
+            }
+        }
+
+        return dp[0][1];
     }
 }
