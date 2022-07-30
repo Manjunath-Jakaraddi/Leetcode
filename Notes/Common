@@ -69,9 +69,30 @@ VERY IMPORTANT: Start the for loops iteration in bottom up from where the base c
 Time and space complexity DP
 -------------
 
-If computing each state requires FF time, and there are nn possible states, then the time complexity of a DP algorithm is
+If computing each state requires F time, and there are n possible states, then the time complexity of a DP algorithm is
 O(n⋅F). With all the problems we have looked at so far, computing a state has just been using a recurrence relation equation,
 which is O(1). Therefore, the time complexity has just been equal to the number of states.
+
+State Reduction
+-------------
+Note: state reductions for space complexity usually only apply to bottom-up implementations, while improving time complexity by
+reducing the number of state variables applies to both implementations.
+
+1. Try to space save by using variables if only some previous state are required or space save by eliminating rows in dp
+if only previous row is necessary.
+2. Can space save by avoiding using some of the states in dp if one is derivable by another using mathematical formula.
+3. Can save time complexity if possible in problem by avoiding iteration and cleverly using states
+    (like in house robber instead of using another states for previously robber we make use of states)
+
+
+Counting DP
+-----------
+Difference with max/min dp
+1. instead of max min between transition we sum the states leading to particular state
+2. in case of max/min the base cases are usually 0, but here as we use only addition if we use base case zero
+    the answer will be zero. So here we need to intelligently reason and set the base conditions.
+
+
 
 
 Java APIs
