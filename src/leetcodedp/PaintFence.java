@@ -32,7 +32,7 @@ public class PaintFence {
         return res;
     }
 
-    public int numWaysSpaceSaving(int N, int K) {
+    public int numWaysSpaceSavingMLE(int N, int K) {
         int[][] prevDp = new int[K][K], nextDp = new int[K][K], temp;
         if (N == 1) {
             return K;
@@ -68,5 +68,15 @@ public class PaintFence {
             }
         }
         return res;
+    }
+
+    public int numWays1Ddp(int N, int K) {
+        int[] totalWays = new int[N+1];
+        totalWays[1] = K;
+        totalWays[2] = K * K;
+        for (int i = 3; i <=N; i++) {
+            totalWays[i] = (totalWays[i-1] + totalWays[i-2]) * (K - 1);
+        }
+        return totalWays[N];
     }
 }

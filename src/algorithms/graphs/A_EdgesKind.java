@@ -61,3 +61,6 @@ public class A_EdgesKind {
         dfs_num[u] = VISITED;
     }
 }
+/**
+ * Forward edges can only occur in directed graphs
+ */

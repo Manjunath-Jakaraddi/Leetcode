@@ -103,3 +103,43 @@ Java APIs
     c. floorEntry -> greatest key <= current given key
     d. lowerEntry -> greatest key < current given key
     we can also fetch just the Key with ceilingKey, floorKey methods as well
+
+
+Eulerian vs Hamiltonian
+----------------------
+
+Path :- contains all the nodes in the graph.
+Circuit/cycle :- contains all the nodes in the graph and ends at the same node where it started.
+
+All circuits are paths but not vice versa.
+
+1. Eulerian :- Path/circuit which covers all the edges in the graph
+2. Hamiltonian :- Path/circuit which covers all the vertices in the graph
+
+Conditions to check if Eulerian Path/circuit exists or not
+
+                Eulerian Circuit                     Eulerian Path
+UnDirected     All nodes have                 All nodes have even degree
+               even degree (in/out)          except only two which have odd degree
+Directed      All nodes have same             All nodes have same indegree and outdegree
+              indegree and outdegree        except two which have in[i] - out[i] == 1 (ending node)
+                                            and out[i] - in[i] == 1 (starting node)
+
+
+UnDirected graph :- degree of node is defined as the number of edges attached to a node
+Directed graph :- node has two types of degree
+    1. Indegree -> number of incoming edges
+    2. Outdegree -> number of outgoing edges
+
+
+Algorithm to find Eulerian path is
+1. First explore all the edges in dfs until hitting a dead end
+2.
+    a. track back adding the elements explored (in the stack) if no edge is there to explore
+    b. if edge there to explore while tracking back then start a dfs from that
+
+Convert List of List to 2D array
+List<List<Integer>> res = new ArrayList<>();
+int[][] ans = res.stream()
+                .map(l -> l.stream().mapToInt(Integer::intValue).toArray())
+                .toArray(int[][]::new);
