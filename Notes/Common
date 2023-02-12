@@ -93,6 +93,18 @@ Difference with max/min dp
     the answer will be zero. So here we need to intelligently reason and set the base conditions.
 
 
+Digit DP
+---------
+1. When the problem is asking to find the numbers count adhering to some special condition,
+    between some range [L, R] then we can use digit dp.
+2. Problem can be broken down to solving from [0,R) and then subtracting the [0, L)
+3. Nothing special about this dp, if we try to iterate using some state for the problem
+    and the numbers sequentially(0 -> 9 for each of the positions) we may exceed the
+    the limit R so while iterating we use another state in dp *tight* which represents
+    the digit chosen before in maxed one (like in case of 5123 if the first digit chosen is 5
+    then for the second digit we set tight = true else false).
+        If tight is false then we are free to choose any number
+        else choose only till x (x being the the digit at position i in the number)
 
 
 Java APIs
@@ -143,3 +155,15 @@ List<List<Integer>> res = new ArrayList<>();
 int[][] ans = res.stream()
                 .map(l -> l.stream().mapToInt(Integer::intValue).toArray())
                 .toArray(int[][]::new);
+
+
+Segment Tree
+-----------
+Brush up :-
+1. https://leetcode.com/articles/a-recursive-approach-to-segment-trees-range-sum-queries-lazy-propagation/
+2. https://maratona.ic.unicamp.br/MaratonaVerao2016/material/segment_tree_lecture.pdf
+
+
+Fenwick Tree
+------------
+Brush Up
